@@ -41,19 +41,10 @@ public class App {
 						}
 					}
 				}
-				
-				/*while((linha = reader.readLine()) != null){
-					int primeiroEspaco = linha.indexOf(' ');
-					nomeGalaxia = linha.substring(0, primeiroEspaco);
-					linha = linha.substring(primeiroEspaco + 1);
-					vizinhos = new ArrayList<>(Arrays.asList(linha.split(" ")));
-					int numPlanetas = getPlanetasFrom(nomeGalaxia);
-					Nodo galaxia = new Nodo(nomeGalaxia, 1, numPlanetas, vizinhos);
-					universo.put(nomeGalaxia, galaxia);
-				}*/
+
 			//fim da leitura do arquivo
 				System.out.println("Caso de teste: " + arquivo);
- 				//explorar(universo);
+ 				explorar(universo);
 				
 			}
 			catch(FileNotFoundException e){
