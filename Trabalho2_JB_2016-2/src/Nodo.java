@@ -6,15 +6,15 @@ public class Nodo {
 	private int planetas;
 	private int totalGalaxias;
 	private int totalPlanetas;
-	private ArrayList<String> vizinhos;
+	private String[] vizinhos;
 	
-	public Nodo(String nome, int galaxias, int planetas, ArrayList<String> vizinhos){
+	public Nodo(String nome, int galaxias, int planetas, String[] vizinhos){
 		this.nome = nome;
 		this.galaxias = galaxias;
 		this.planetas = planetas;
 		this.vizinhos = vizinhos;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -63,13 +63,16 @@ public class Nodo {
 				+ "]";
 	}
 
-	public ArrayList<String> getVizinhos() {
+
+	public String[] getVizinhos() {
 		return vizinhos;
 	}
 
-	public void setVizinhos(ArrayList<String> vizinhos) {
+	public void setVizinhos(String[] vizinhos) {
 		this.vizinhos = vizinhos;
 	}
+	
+	
 	
 
 }

@@ -11,12 +11,13 @@ public class App {
 	public static void main(String args[]){
 		long tempoInicial = System.currentTimeMillis();
 		String[] arquivos = {"casoa", "casob", "casoc", "casod", "casoe", "casof", "casog", "casoh", "casoi", "casoj"};
-		//String[] arquivos = {"casey"};
+		//String[] arquivos = {"casox"};
 		
 		for(String arquivo: arquivos){
 			long tempoInicialArq = System.currentTimeMillis();
 			File file = new File(arquivo);
-			ArrayList<String> vizinhos;
+			//ArrayList<String> vizinhos;
+			String[] vizinhos;
 			Map<String, Nodo> universo = new HashMap<>();
 			
 			//leitura do arquivo
@@ -25,13 +26,46 @@ public class App {
 				
 				String linha;
 				String nomeGalaxia;
+				int numPlanetas;
 				
 				while((linha = reader.readLine()) != null){
+					
+					String[] galaxias = linha.split(" ");
+					nomeGalaxia = galaxias[0];
+					numPlanetas = getPlanetasFrom(nomeGalaxia);
+					int tamanho = galaxias.length;
+					vizinhos = new String[tamanho-1];
+					for(int i = 1; i < galaxias.length; i++){
+						vizinhos[i-1] = galaxias[i];
+						if(!universo.containsKey(vizinhos[i-1])){
+							universo.put(vizinhos[i-1], new Nodo(vizinhos[i-1], 1, getPlanetasFrom(vizinhos[i-1]), null));
+						}
+					}
+					if(universo.containsKey(nomeGalaxia)){
+						Nodo galaxia = universo.get(nomeGalaxia);
+						if(galaxia.getVizinhos() == null){
+							galaxia.setVizinhos(vizinhos);
+						}
+					} else{
+						universo.put(nomeGalaxia, new Nodo(nomeGalaxia, 1, numPlanetas, vizinhos));
+					}
+					
+					for(String vizinho: vizinhos){
+						if(!universo.containsKey(vizinho)){
+							universo.put(vizinho, new Nodo(vizinho, 1, getPlanetasFrom(vizinho), null));
+						}
+					}
+				}
+				/*
+				while((linha = reader.readLine()) != null){
+									
 					int primeiroEspaco = linha.indexOf(' ');
 					nomeGalaxia = linha.substring(0, primeiroEspaco);
+					
 					linha = linha.substring(primeiroEspaco + 1);
 					vizinhos = new ArrayList<>(Arrays.asList(linha.split(" ")));
-					int numPlanetas = getPlanetasFrom(nomeGalaxia);
+					
+					 numPlanetas = getPlanetasFrom(nomeGalaxia);
 					Nodo galaxia = new Nodo(nomeGalaxia, 1, numPlanetas, vizinhos);
 					universo.put(nomeGalaxia, galaxia);
 					for(String vizinho: vizinhos){
@@ -40,7 +74,7 @@ public class App {
 							universo.put(vizinho, new Nodo(vizinho, 1, numPlanetas, null));
 						}
 					}
-				}
+				}*/
 
 			//fim da leitura do arquivo
 				System.out.println("Caso de teste: " + arquivo);
