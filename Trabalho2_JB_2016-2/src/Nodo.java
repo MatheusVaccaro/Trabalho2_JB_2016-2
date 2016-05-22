@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 
 public class Nodo {
-	private String nome;
-	private int galaxias;
-	private int planetas;
-	private int totalGalaxias;
-	private int totalPlanetas;
-	private String[] vizinhos;
+	public String nome;
+	public int galaxias;
+	public int planetas;
+	public int totalGalaxias;
+	public int totalPlanetas;
+	public ArrayList<String> vizinhos;
 	
-	public Nodo(String nome, int galaxias, int planetas, String[] vizinhos){
+	public Nodo(String nome, int galaxias, int planetas){
 		this.nome = nome;
 		this.galaxias = galaxias;
 		this.planetas = planetas;
-		this.vizinhos = vizinhos;
+		this.vizinhos = new ArrayList<String>();
 	}
 	
 	public String getNome() {
@@ -63,14 +63,16 @@ public class Nodo {
 				+ "]";
 	}
 
-
-	public String[] getVizinhos() {
+	public ArrayList<String> getVizinhos() {
 		return vizinhos;
 	}
 
-	public void setVizinhos(String[] vizinhos) {
+	public void setVizinhos(ArrayList<String> vizinhos) {
 		this.vizinhos = vizinhos;
 	}
+
+
+	
 	
 	
 	
